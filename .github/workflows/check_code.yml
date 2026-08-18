@@ -37,3 +37,9 @@ jobs:
       run: |
         # 檢查是否有致命語法錯誤或未定義的變數
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+# 步驟五：真正執行氣象服務程式碼並帶入 Secrets 密鑰
+    - name: 測試執行 CWA 氣象抓取程式
+      env:
+        CWA_API_KEY: ${{ secrets.CWA_API_KEY }}
+      run: |
+        python cwa_service.py
